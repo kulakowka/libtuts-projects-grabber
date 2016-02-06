@@ -17,21 +17,21 @@ const API_SERVER_ENDPOINT = 'http://localhost:3001/project/create'
 
 // Запускаем парсилку
 let startPage = 1
-let totalPages = 10
+let totalPages = 2
 
-startParsing(startPage, (err, result) => {
+startParsing(startPage, onPageParsed)
+
+function onPageParsed (err, result) {
   if (err) console.log(err)
-  console.log('\n\n\n')
-  console.log('projects saved! Result:')
-  console.log('\n\n\n')
-  console.log(result)
+  console.log('%d projects saved!', result.length)
 
-  // result.forEach(project => {
-  //   if (!project) return console.log('Project not loaded')
-  //   console.log(`${project.platform}/${project.name}`)
-  // })
-  // console.log('total projects %d', result.length)
-})
+  if (startPage < totalPages) {
+    startPage++
+    setTimeout(() => {
+      startParsing(startPage, onPageParsed)
+    }, 60000)
+  }
+}
 
 // Step 0
 function startParsing (startPage, callback) {
