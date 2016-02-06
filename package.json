@@ -1,0 +1,16 @@
+{
+  "name": "projects-grabber",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node --harmony index.js"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "cheerio": "^0.20.0",
+    "colors": "^1.1.2",
+    "moment": "^2.11.2",
+    "node-schedule": "^1.0.0",
+    "request": "^2.69.0"
+  }
+}
