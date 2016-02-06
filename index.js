@@ -2,8 +2,11 @@
 
 const cheerio = require('cheerio')
 const async = require('async')
-const request = require('request')
-// const colors = require('colors/safe')
+const request = require('request').defaults({
+  timeout: 5000
+})
+
+const colors = require('colors/safe')
 const _url = require('url')
 // const fs = require('fs')
 const moment = require('moment')
@@ -18,7 +21,16 @@ let totalPages = 10
 
 startParsing(startPage, (err, result) => {
   if (err) console.log(err)
-  console.log('result', result)
+  console.log('\n\n\n')
+  console.log('projects saved! Result:')
+  console.log('\n\n\n')
+  console.log(result)
+
+  // result.forEach(project => {
+  //   if (!project) return console.log('Project not loaded')
+  //   console.log(`${project.platform}/${project.name}`)
+  // })
+  // console.log('total projects %d', result.length)
 })
 
 // Step 0
@@ -32,7 +44,9 @@ function startParsing (startPage, callback) {
 
 // Step 1
 function loadPage (page, callback) {
-  request(getSearchUrl(page), (err, res, body) => {
+  const url = getSearchUrl(page)
+  console.log('loadPage', colors.blue(url))
+  request(url, (err, res, body) => {
     if (err) return callback(err)
     if (res.statusCode !== 200) return callback(new Error(`${res.statusCode} ${res.statusMessage}`))
     callback(null, body)
@@ -74,9 +88,13 @@ function loadProject (path, callback) {
 
 // Step 3 / 3
 function saveProject (project, callback) {
-  request.post(API_SERVER_ENDPOINT, {form: getProjectAttributes(project)}, (err, res, body) => {
+  console.log('\n')
+  console.log('Start saving project', colors.red(project.name))
+  request.post(API_SERVER_ENDPOINT, {json: true, form: getProjectAttributes(project)}, (err, res, body) => {
     if (err) return callback(err)
     if (res.statusCode !== 200) return callback(new Error(`${res.statusCode} ${res.statusMessage}`))
+
+    console.log('project created', body)
     callback(null, body)
   })
 }
