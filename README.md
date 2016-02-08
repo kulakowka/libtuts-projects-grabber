@@ -5,6 +5,18 @@ https://libraries.io/api/npm/mocha?api_key=55830a25cdfb7da183e04d2757e89ebb
 https://libraries.io/npm/mocha
 ```
 
+## CLI
+
+Help:
+```
+npm start -- -h
+```
+
+Start with a specified page:
+```
+DEBUG=app:* npm start -- -p 100
+```
+
 ## Search worker
 
 Compact debug:
