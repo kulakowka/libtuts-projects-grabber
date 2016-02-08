@@ -1,0 +1,8 @@
+{
+  "mongodbUrl":"mongodb://localhost/libtuts_prototype_api_v1",
+  "librariesio": {
+    "apiKey": "55830a25cdfb7da183e04d2757e89ebb"
+  },
+  "total": 1132342,
+  "perPage": 30
+}
