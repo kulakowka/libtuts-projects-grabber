@@ -1,5 +1,4 @@
 'use strict'
-
 const mongoose = require('./utils/mongoose')
 const SearchWorker = require('./workers/search')
 // const ProjectWorker = require('./workers/project')
