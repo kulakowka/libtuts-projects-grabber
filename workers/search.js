@@ -54,6 +54,7 @@ function saveData (page, projects, next) {
 function createProject (project, callback) {
   let data = helpers.projectAttributeNormalizer(project)
   let query = {
+    slug: data.platform + '/' + data.name,
     name: data.name,
     platform: data.platform
   }
