@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --harmony index.js"
+    "start": "DEBUG=app:* node --harmony index.js"
   },
   "dependencies": {
     "async": "^1.5.2",
